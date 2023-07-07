@@ -1,3 +1,4 @@
+import { Message } from "./Components/Message"
 
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <div>Something</div>
+      <Message />
     </>
   )
 }

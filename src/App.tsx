@@ -1,13 +1,16 @@
-import { Message } from "./Components/Message"
-
+import { AddItem } from "./Components/AddItem"
+import { Display } from "./Components/Display"
+import './index.css'
 
 function App() {
 
 
   return (
     <>
-      <div>Something</div>
-      <Message />
+      <div className="container">
+        <AddItem />
+        <Display />
+      </div>
     </>
   )
 }

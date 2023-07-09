@@ -1,9 +1,11 @@
+import { ReactEventHandler } from "react"
 
 
 interface AddItemProps {
     onChangeInput : (e:React.ChangeEvent<HTMLInputElement>) => void
     onChangeTextArea : (e:React.ChangeEvent<HTMLTextAreaElement>) => void
-    onClickButton : React.MouseEvent<HTMLButtonElement> 
+    onClickButton : (e:React.MouseEvent<HTMLButtonElement> ) => void
+   
 }
 
 
@@ -30,14 +32,17 @@ export const AddItem = ({ onChangeInput, onChangeTextArea, onClickButton }: AddI
                     id="exampleFormControlTextarea1" 
                     placeholder="Doing laundry..." 
                     onChange={onChangeTextArea}>
+                    
                   
                     </textarea>
 
                 </div>
                 <button 
                 className="btn btn-info"
-                
+                onClick={onClickButton}
+               
                 >Add</button>
+                <br />
             </div>
         </>
     ) 

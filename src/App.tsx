@@ -1,27 +1,46 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { AddItem } from "./Components/AddItem"
 import { Display } from "./Components/Display"
 import './index.css'
 
 function App() {
-const [item, setItem] = useState("")
-const [title, setTitle] = useState("")
+  const [item, setItem] = useState("")
+  const [title, setTitle] = useState("")
 
-// const print = () => {
-//   console.log(e.target.value)
-// }
+  
+  const [todo, setTodo] = useState<{ todo_title: string, todo_item: string, todoId : any }[]>([])
+
+ 
 
   return (
     <>
-    {<h1>TITLE : </h1>} {JSON.stringify(title)}
-    <br />
-    {<h2>ITEM : </h2>} {JSON.stringify(item)}
+
+      {/* {JSON.stringify(todo)} */}
+   
       <div className="container">
-        <AddItem 
-        onChangeInput={(e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} 
-        onChangeTextArea={(e:React.ChangeEvent<HTMLTextAreaElement>) => setItem(e.target.value)}/>
-        <Display />
+        <AddItem
+          onChangeInput={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+          onChangeTextArea={(e: React.ChangeEvent<HTMLTextAreaElement>) => setItem(e.target.value)}
+         
+          onClickButton={() => setTodo(prev => [
+            ...prev,
+            { todo_title: title, todo_item: item, todoId : Date.now()},
+          ])}      
+        />
+    
+        {todo.map(({ todo_title, todo_item, todoId }) =>
+          <Display
+            key={todoId}
+            display_title={todo_title}
+            display_item={todo_item}
+            onClickButton={() => setTodo(todo.filter(item => item.todoId !== todoId))
+            }
+         
+
+          />
+        )}
       </div>
+
     </>
   )
 }
